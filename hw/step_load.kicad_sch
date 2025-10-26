@@ -4878,6 +4878,12 @@
 		(uuid "0cd25ac2-f580-42a5-93a1-8234b8fe41f6")
 	)
 	(junction
+		(at 38.1 168.91)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0dd296e6-7240-4a03-9576-a224dc7343bd")
+	)
+	(junction
 		(at 304.8 30.48)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4930,6 +4936,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "42243bac-d02f-4330-a2a7-f004a23dccee")
+	)
+	(junction
+		(at 35.56 157.48)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4a1931c1-3250-47c6-9c83-f823f79854d0")
 	)
 	(junction
 		(at 361.95 31.75)
@@ -5192,6 +5204,16 @@
 			(type default)
 		)
 		(uuid "0e5516c2-87c2-421e-9505-d9d73fe5aa1d")
+	)
+	(wire
+		(pts
+			(xy 35.56 166.37) (xy 35.56 157.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "10d8f966-2b29-4c2d-a984-392fcd958177")
 	)
 	(wire
 		(pts
@@ -5472,6 +5494,16 @@
 			(type default)
 		)
 		(uuid "38f50f0a-a42e-4abb-9748-45dd3d03f85e")
+	)
+	(wire
+		(pts
+			(xy 38.1 168.91) (xy 38.1 172.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3b17edb6-a47c-429a-ae39-cf212b223076")
 	)
 	(wire
 		(pts
@@ -5975,7 +6007,7 @@
 	)
 	(wire
 		(pts
-			(xy 38.1 157.48) (xy 33.02 157.48)
+			(xy 38.1 157.48) (xy 35.56 157.48)
 		)
 		(stroke
 			(width 0)
@@ -6142,6 +6174,16 @@
 			(type default)
 		)
 		(uuid "856f29f0-f2eb-4013-b88e-3872e128e063")
+	)
+	(wire
+		(pts
+			(xy 35.56 157.48) (xy 33.02 157.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "87415d51-63d9-4001-b836-a7f505fec349")
 	)
 	(wire
 		(pts
@@ -6905,6 +6947,16 @@
 	)
 	(wire
 		(pts
+			(xy 30.48 168.91) (xy 38.1 168.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d5ada5c8-e09a-4e6e-9da2-e35345b29db8")
+	)
+	(wire
+		(pts
 			(xy 304.8 130.81) (xy 304.8 140.97)
 		)
 		(stroke
@@ -6962,6 +7014,16 @@
 			(type default)
 		)
 		(uuid "dac618ed-6c92-4966-977c-09c9b1650bc7")
+	)
+	(wire
+		(pts
+			(xy 30.48 166.37) (xy 35.56 166.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dae659b9-1ad2-49ea-903f-c9222c97d297")
 	)
 	(wire
 		(pts
@@ -13545,7 +13607,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 38.1 168.91 0)
+		(at 38.1 172.72 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -13553,7 +13615,7 @@
 		(dnp no)
 		(uuid "7405fd29-375d-4ef9-99db-f07dc7d4e182")
 		(property "Reference" "#PWR07"
-			(at 38.1 175.26 0)
+			(at 38.1 179.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13562,7 +13624,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 38.1 172.466 0)
+			(at 38.1 176.276 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13570,7 +13632,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 38.1 168.91 0)
+			(at 38.1 172.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13579,7 +13641,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 38.1 168.91 0)
+			(at 38.1 172.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13588,7 +13650,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 38.1 168.91 0)
+			(at 38.1 172.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18502,6 +18564,75 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:Conn_01x02_Pin")
+		(at 25.4 166.37 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d07feb01-7541-44d7-a747-96d059361eda")
+		(property "Reference" "J7"
+			(at 24.13 166.3699 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "DC_IN"
+			(at 24.13 168.9099 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+			(at 25.4 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 25.4 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated"
+			(at 25.4 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "db14fb13-de30-46f8-bc6f-147a2bf7ebfa")
+		)
+		(pin "2"
+			(uuid "3d01fcc7-d2c1-41d8-adb0-00f3715e6bc6")
+		)
+		(instances
+			(project "step_load"
+				(path "/603eb7a1-c3a5-4870-b8f2-de3ec082ba62"
+					(reference "J7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 38.1 210.82 0)
 		(mirror x)
@@ -21522,7 +21653,7 @@
 			)
 		)
 		(instances
-			(project "load_resistor"
+			(project "step_load"
 				(path "/603eb7a1-c3a5-4870-b8f2-de3ec082ba62"
 					(page "2")
 				)
