@@ -58,7 +58,28 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        [
+          "courtyards_overlap|210245000|89985000|a350e4db-f3a3-4f35-ac0b-ac5fd961bed1|ca679d76-1add-4c40-b745-321341d24b79",
+          ""
+        ],
+        [
+          "courtyards_overlap|220245000|89985000|9316831c-5f83-4daf-85a3-1f4adc4dbed6|df893002-0e5b-41d9-9379-4b3fcbf2b1f7",
+          ""
+        ],
+        [
+          "courtyards_overlap|230245000|89985000|050acba7-a04f-4790-b6f5-9c7e45989a2c|e4edc5ef-4838-4211-aef4-7cc4c9f7087a",
+          ""
+        ],
+        [
+          "courtyards_overlap|240245000|89985000|104b2f52-214e-4d85-8673-203a3a09a498|379b13a7-3596-45d6-8e8b-797d932340bd",
+          ""
+        ],
+        [
+          "silk_edge_clearance|90000000|80890000|8409e58d-8a4e-4ba0-964b-dd0c6f6fbfe0|0a9e8436-2926-4c04-83cd-8491784e7e73",
+          ""
+        ]
+      ],
       "meta": {
         "version": 2
       },
@@ -139,7 +160,7 @@
         "min_track_width": 0.0,
         "min_via_annular_width": 0.1,
         "min_via_diameter": 0.5,
-        "solder_mask_to_copper_clearance": 0.0,
+        "solder_mask_to_copper_clearance": 0.005,
         "use_height_for_length_calcs": true
       },
       "teardrop_options": [

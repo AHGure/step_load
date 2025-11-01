@@ -8560,7 +8560,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "00000000-0000-0000-0000-000060f8cb33")
 		(property "Reference" "J6"
 			(at 392.43 172.72 0)
@@ -8812,7 +8812,7 @@
 				(hide yes)
 			)
 		)
-		(property "jlc_part" "C2986060"
+		(property "jlc_part" "C2286"
 			(at 144.78 76.2 90)
 			(effects
 				(font
@@ -8821,7 +8821,7 @@
 				(hide yes)
 			)
 		)
-		(property "mfr_part" "19-217/R6C-AL1M2VY/6T"
+		(property "mfr_part" "KT-0603R"
 			(at 144.78 76.2 90)
 			(effects
 				(font
@@ -9054,6 +9054,24 @@
 			)
 		)
 		(property "ppm" ""
+			(at 330.2 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "jlc_part" "C15849"
+			(at 330.2 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "CL10A105KB8NNNC"
 			(at 330.2 40.64 0)
 			(effects
 				(font
@@ -9410,7 +9428,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "16124dab-b7ef-4927-bc3f-2003ccb7af9b")
 		(property "Reference" "H2"
@@ -9626,7 +9644,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 88.9 152.4 0)
 			(effects
 				(font
@@ -9635,7 +9653,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/1810181811_TOSHIBA-CUS10S30-H3F_C146335.pdf"
 			(at 88.9 152.4 0)
 			(effects
 				(font
@@ -9804,6 +9822,15 @@
 			)
 		)
 		(property "ppm" ""
+			(at 38.1 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "jlc_part" "C92102"
 			(at 38.1 127 0)
 			(effects
 				(font
@@ -10220,7 +10247,7 @@
 		(dnp no)
 		(uuid "30f69f69-215f-4508-9e07-af0cb149d3b7")
 		(property "Reference" "R28"
-			(at 274.955 127 0)
+			(at 274.32 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10616,9 +10643,9 @@
 		(at 133.35 31.75 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "3c9eacb7-752d-4299-addc-f7103e577680")
 		(property "Reference" "U1"
 			(at 128.524 25.654 0)
@@ -10974,6 +11001,24 @@
 				(hide yes)
 			)
 		)
+		(property "jlc_part" "C146335"
+			(at 365.76 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "CUS10S30,H3F"
+			(at 365.76 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "66cbfc8b-f7de-4653-9f1f-343a1ce3c62f")
 		)
@@ -11162,6 +11207,24 @@
 			)
 		)
 		(property "ppm" ""
+			(at 200.66 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "jlc_part" "C15849"
+			(at 200.66 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "CL10A105KB8NNNC"
 			(at 200.66 105.41 0)
 			(effects
 				(font
@@ -11519,9 +11582,9 @@
 		(at 377.19 106.68 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "4c70c46a-308a-4154-a26b-a005b8a5cb72")
 		(property "Reference" "NT1"
@@ -12010,9 +12073,9 @@
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "556f00ea-9d75-4103-880a-879ac5b285f4")
 		(property "Reference" "D4"
 			(at 336.55 128.27 90)
@@ -12133,6 +12196,24 @@
 		)
 		(property "In Stock" "3000"
 			(at 339.09 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "jlc_part" "C455026"
+			(at 339.09 128.27 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "BZX585-B3V6,115"
+			(at 339.09 128.27 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12522,6 +12603,24 @@
 			)
 		)
 		(property "ppm" ""
+			(at 76.2 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "jlc_part" "C15849"
+			(at 76.2 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "CL10A105KB8NNNC"
 			(at 76.2 29.21 0)
 			(effects
 				(font
@@ -12977,9 +13076,9 @@
 		(at 177.8 31.75 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "5910dd19-0c23-41b1-ba52-19097e275712")
 		(property "Reference" "U2"
 			(at 174.244 25.4 0)
@@ -13390,6 +13489,24 @@
 				(hide yes)
 			)
 		)
+		(property "jlc_part" "C15849"
+			(at 266.7 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "CL10A105KB8NNNC"
+			(at 266.7 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "1c3607f0-d75b-464a-b47b-f91fda8997ba")
 		)
@@ -13757,7 +13874,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 88.9 165.1 0)
 			(effects
 				(font
@@ -13766,7 +13883,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/1810181811_TOSHIBA-CUS10S30-H3F_C146335.pdf"
 			(at 88.9 165.1 0)
 			(effects
 				(font
@@ -14034,6 +14151,24 @@
 				(hide yes)
 			)
 		)
+		(property "jlc_part" "C15849"
+			(at 63.5 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "CL10A105KB8NNNC"
+			(at 63.5 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "24350d7b-0b0b-43e9-b8b5-a8b72e780d06")
 		)
@@ -14187,7 +14322,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "77eeef3b-a25f-4f3d-99ae-279f3f21eef2")
 		(property "Reference" "J7"
 			(at 180.34 229.87 0)
@@ -14332,7 +14467,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "799086be-bb9a-4f31-8417-afd256f5c011")
 		(property "Reference" "H1"
@@ -14470,7 +14605,7 @@
 				(hide yes)
 			)
 		)
-		(property "jlc_part" "C2927039"
+		(property "jlc_part" "C165948"
 			(at 27.94 45.72 0)
 			(effects
 				(font
@@ -14479,7 +14614,7 @@
 				(hide yes)
 			)
 		)
-		(property "mfr_part" "USB-TYPE-C-019"
+		(property "mfr_part" "TYPE-C-31-M-12"
 			(at 27.94 45.72 0)
 			(effects
 				(font
@@ -14757,9 +14892,9 @@
 		(at 392.43 120.65 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "7ddae342-484a-46e3-ae0d-b872b219d776")
 		(property "Reference" "J3"
@@ -14971,7 +15106,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "836a3383-eced-4c7a-89bd-2f7b4274dabe")
 		(property "Reference" "H4"
@@ -15274,6 +15409,24 @@
 				(hide yes)
 			)
 		)
+		(property "jlc_part" "C7171"
+			(at 25.4 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "TAJA106K016RNJ"
+			(at 25.4 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "3d743455-441d-4d24-b365-fcae64c433a3")
 		)
@@ -15437,6 +15590,24 @@
 			)
 		)
 		(property "ppm" ""
+			(at 214.63 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "jlc_part" "C2934560"
+			(at 214.63 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "ESP32-C3-WROOM-02-N4"
 			(at 214.63 135.89 0)
 			(effects
 				(font
@@ -15836,7 +16007,7 @@
 				(hide yes)
 			)
 		)
-		(property "jlc_part" "C2986060"
+		(property "jlc_part" "C2286"
 			(at 132.08 76.2 90)
 			(effects
 				(font
@@ -15845,7 +16016,7 @@
 				(hide yes)
 			)
 		)
-		(property "mfr_part" "19-217/R6C-AL1M2VY/6T"
+		(property "mfr_part" "KT-0603R"
 			(at 132.08 76.2 90)
 			(effects
 				(font
@@ -16339,6 +16510,24 @@
 				(hide yes)
 			)
 		)
+		(property "jlc_part" "C7171"
+			(at 50.8 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "TAJA106K016RNJ"
+			(at 50.8 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "2da04914-b86e-445c-bf95-1e811c6117d9")
 		)
@@ -16424,9 +16613,9 @@
 		(at 336.55 40.64 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "a2f2c108-9b79-4d3c-aa56-af4045ccd92f")
 		(property "Reference" "SW3"
@@ -17297,9 +17486,9 @@
 		(at 273.05 39.37 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "b87a9849-7ddc-40e8-a83c-38d8a27c0034")
 		(property "Reference" "SW1"
@@ -17815,9 +18004,9 @@
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "bee0f803-f02f-46d8-a7b5-e566db6d21c2")
 		(property "Reference" "NT2"
 			(at 377.19 114.3 0)
@@ -18223,6 +18412,24 @@
 				(hide yes)
 			)
 		)
+		(property "jlc_part" "C15849"
+			(at 57.15 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "CL10A105KB8NNNC"
+			(at 57.15 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "2df0604d-abba-4d53-ba76-f6b1629625e9")
 		)
@@ -18504,6 +18711,24 @@
 				(hide yes)
 			)
 		)
+		(property "jlc_part" "C15849"
+			(at 298.45 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "CL10A105KB8NNNC"
+			(at 298.45 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "a6392002-0047-4717-bd96-e7538472d874")
 		)
@@ -18524,9 +18749,9 @@
 		(at 393.7 40.64 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "c91f192b-2550-40e1-bc2f-cdd9c5df341d")
 		(property "Reference" "SW4"
@@ -18991,7 +19216,7 @@
 		(dnp no)
 		(uuid "cf0ca372-49f1-4cc4-8b2c-1d790ec2f6c1")
 		(property "Reference" "R29"
-			(at 281.305 127 0)
+			(at 280.67 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19266,9 +19491,9 @@
 		(at 25.4 166.37 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "d07feb01-7541-44d7-a747-96d059361eda")
 		(property "Reference" "J5"
 			(at 24.13 166.3699 0)
@@ -19837,6 +20062,24 @@
 				(hide yes)
 			)
 		)
+		(property "jlc_part" "C7171"
+			(at 50.8 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "TAJA106K016RNJ"
+			(at 50.8 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "0130cc34-0cc8-4aca-9d8b-f185df58503a")
 		)
@@ -20032,6 +20275,24 @@
 				(hide yes)
 			)
 		)
+		(property "jlc_part" "C7171"
+			(at 63.5 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "TAJA106K016RNJ"
+			(at 63.5 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "2ed0db4d-cfac-42a8-964c-ea069589c6b6")
 		)
@@ -20183,9 +20444,9 @@
 		(at 304.8 39.37 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "dff54505-75ab-41c1-b07b-4516da2ab0e8")
 		(property "Reference" "SW2"
@@ -20492,6 +20753,24 @@
 				(hide yes)
 			)
 		)
+		(property "jlc_part" "C15849"
+			(at 355.6 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "CL10A105KB8NNNC"
+			(at 355.6 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "3ac4d3f8-4242-48a6-a57b-59bd011cea04")
 		)
@@ -20754,6 +21033,24 @@
 				(hide yes)
 			)
 		)
+		(property "jlc_part" "C15849"
+			(at 387.35 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "CL10A105KB8NNNC"
+			(at 387.35 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "66818d87-8a91-46b0-8d88-853c79ee6617")
 		)
@@ -20776,7 +21073,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "ee87e302-34f6-405f-b934-ffa55748da34")
 		(property "Reference" "H3"
@@ -20971,9 +21268,9 @@
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "f127da98-cddf-4445-af1c-634460ccaf59")
 		(property "Reference" "J1"
@@ -21347,6 +21644,24 @@
 				(hide yes)
 			)
 		)
+		(property "jlc_part" "C15849"
+			(at 69.85 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "CL10A105KB8NNNC"
+			(at 69.85 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "91fe5f40-4d32-4802-858d-c872114944d7")
 		)
@@ -21566,7 +21881,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "f7845baa-0987-4ed2-b597-29fefff0efc2")
 		(property "Reference" "J4"
 			(at 25.4 153.035 0)
@@ -21983,6 +22298,24 @@
 			)
 		)
 		(property "ppm" ""
+			(at 57.15 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "jlc_part" "C15849"
+			(at 57.15 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "CL10A105KB8NNNC"
 			(at 57.15 134.62 0)
 			(effects
 				(font

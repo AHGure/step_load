@@ -8492,9 +8492,9 @@
 		(at 185.42 120.65 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "0040f8d1-2ff8-47e0-8cee-c079457fbee9")
 		(property "Reference" "R6"
@@ -9631,7 +9631,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 330.2 227.33 0)
 			(effects
 				(font
@@ -9640,7 +9640,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/1810181811_TOSHIBA-CUS10S30-H3F_C146335.pdf"
 			(at 330.2 227.33 0)
 			(effects
 				(font
@@ -9818,6 +9818,24 @@
 				(hide yes)
 			)
 		)
+		(property "jlc_part" "C2153097"
+			(at 264.16 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "G6K-2F-Y-TR DC3"
+			(at 264.16 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "678fc76e-214d-451e-88f8-dc4ae0aa9167")
 		)
@@ -9934,6 +9952,24 @@
 			)
 		)
 		(property "ppm" ""
+			(at 175.26 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "jlc_part" "C2153097"
+			(at 175.26 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "G6K-2F-Y-TR DC3"
 			(at 175.26 101.6 0)
 			(effects
 				(font
@@ -10166,7 +10202,7 @@
 				(hide yes)
 			)
 		)
-		(property "jlc_part" "C2986060"
+		(property "jlc_part" "C2286"
 			(at 228.6 96.52 90)
 			(effects
 				(font
@@ -10175,7 +10211,7 @@
 				(hide yes)
 			)
 		)
-		(property "mfr_part" "19-217/R6C-AL1M2VY/6T"
+		(property "mfr_part" "KT-0603R"
 			(at 228.6 96.52 90)
 			(effects
 				(font
@@ -10389,7 +10425,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 63.5 163.83 0)
 			(effects
 				(font
@@ -10398,7 +10434,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/1810181811_TOSHIBA-CUS10S30-H3F_C146335.pdf"
 			(at 63.5 163.83 0)
 			(effects
 				(font
@@ -11525,7 +11561,7 @@
 				(hide yes)
 			)
 		)
-		(property "jlc_part" "C2986060"
+		(property "jlc_part" "C2286"
 			(at 50.8 96.52 90)
 			(effects
 				(font
@@ -11534,7 +11570,7 @@
 				(hide yes)
 			)
 		)
-		(property "mfr_part" "19-217/R6C-AL1M2VY/6T"
+		(property "mfr_part" "KT-0603R"
 			(at 50.8 96.52 90)
 			(effects
 				(font
@@ -12069,6 +12105,24 @@
 				(hide yes)
 			)
 		)
+		(property "jlc_part" "C2153097"
+			(at 264.16 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "G6K-2F-Y-TR DC3"
+			(at 264.16 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "5a05898b-3131-49ce-8100-b268fe5e209b")
 		)
@@ -12323,9 +12377,9 @@
 		(at 96.52 120.65 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "3d56f9c6-21a8-4cab-8f25-38b047251e47")
 		(property "Reference" "R5"
@@ -12590,6 +12644,24 @@
 			)
 		)
 		(property "ppm" ""
+			(at 175.26 228.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "jlc_part" "C2153097"
+			(at 175.26 228.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "G6K-2F-Y-TR DC3"
 			(at 175.26 228.6 0)
 			(effects
 				(font
@@ -13208,9 +13280,9 @@
 		(at 185.42 57.15 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "44b59947-85f9-46e6-9b7f-7f0b3c2619de")
 		(property "Reference" "R2"
@@ -13463,9 +13535,9 @@
 		(at 363.22 247.65 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "459cd690-3fce-4413-b3a1-bb64be2e3618")
 		(property "Reference" "R16"
@@ -14064,6 +14136,24 @@
 				(hide yes)
 			)
 		)
+		(property "jlc_part" "C2153097"
+			(at 175.26 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "G6K-2F-Y-TR DC3"
+			(at 175.26 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "3426357b-91f6-47b1-a3c7-27a33813a298")
 		)
@@ -14292,7 +14382,7 @@
 				(hide yes)
 			)
 		)
-		(property "jlc_part" "C2986060"
+		(property "jlc_part" "C2286"
 			(at 50.8 33.02 90)
 			(effects
 				(font
@@ -14301,7 +14391,7 @@
 				(hide yes)
 			)
 		)
-		(property "mfr_part" "19-217/R6C-AL1M2VY/6T"
+		(property "mfr_part" "KT-0603R"
 			(at 50.8 33.02 90)
 			(effects
 				(font
@@ -14425,7 +14515,7 @@
 				(hide yes)
 			)
 		)
-		(property "jlc_part" "C2986060"
+		(property "jlc_part" "C2286"
 			(at 228.6 33.02 90)
 			(effects
 				(font
@@ -14434,7 +14524,7 @@
 				(hide yes)
 			)
 		)
-		(property "mfr_part" "19-217/R6C-AL1M2VY/6T"
+		(property "mfr_part" "KT-0603R"
 			(at 228.6 33.02 90)
 			(effects
 				(font
@@ -15162,7 +15252,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 241.3 163.83 0)
 			(effects
 				(font
@@ -15171,7 +15261,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/1810181811_TOSHIBA-CUS10S30-H3F_C146335.pdf"
 			(at 241.3 163.83 0)
 			(effects
 				(font
@@ -15449,7 +15539,7 @@
 				(hide yes)
 			)
 		)
-		(property "jlc_part" "C2986060"
+		(property "jlc_part" "C2286"
 			(at 317.5 223.52 90)
 			(effects
 				(font
@@ -15458,7 +15548,7 @@
 				(hide yes)
 			)
 		)
-		(property "mfr_part" "19-217/R6C-AL1M2VY/6T"
+		(property "mfr_part" "KT-0603R"
 			(at 317.5 223.52 90)
 			(effects
 				(font
@@ -15545,7 +15635,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 152.4 100.33 0)
 			(effects
 				(font
@@ -15554,7 +15644,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/1810181811_TOSHIBA-CUS10S30-H3F_C146335.pdf"
 			(at 152.4 100.33 0)
 			(effects
 				(font
@@ -15901,7 +15991,7 @@
 				(hide yes)
 			)
 		)
-		(property "jlc_part" "C2986060"
+		(property "jlc_part" "C2286"
 			(at 50.8 160.02 90)
 			(effects
 				(font
@@ -15910,7 +16000,7 @@
 				(hide yes)
 			)
 		)
-		(property "mfr_part" "19-217/R6C-AL1M2VY/6T"
+		(property "mfr_part" "KT-0603R"
 			(at 50.8 160.02 90)
 			(effects
 				(font
@@ -16319,7 +16409,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 330.2 163.83 0)
 			(effects
 				(font
@@ -16328,7 +16418,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/1810181811_TOSHIBA-CUS10S30-H3F_C146335.pdf"
 			(at 330.2 163.83 0)
 			(effects
 				(font
@@ -16544,7 +16634,7 @@
 				(hide yes)
 			)
 		)
-		(property "jlc_part" "C2986060"
+		(property "jlc_part" "C2286"
 			(at 139.7 223.52 90)
 			(effects
 				(font
@@ -16553,7 +16643,7 @@
 				(hide yes)
 			)
 		)
-		(property "mfr_part" "19-217/R6C-AL1M2VY/6T"
+		(property "mfr_part" "KT-0603R"
 			(at 139.7 223.52 90)
 			(effects
 				(font
@@ -16696,6 +16786,24 @@
 			)
 		)
 		(property "ppm" ""
+			(at 353.06 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "jlc_part" "C2153097"
+			(at 353.06 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "G6K-2F-Y-TR DC3"
 			(at 353.06 38.1 0)
 			(effects
 				(font
@@ -17013,7 +17121,7 @@
 				(hide yes)
 			)
 		)
-		(property "jlc_part" "C2986060"
+		(property "jlc_part" "C2286"
 			(at 317.5 33.02 90)
 			(effects
 				(font
@@ -17022,7 +17130,7 @@
 				(hide yes)
 			)
 		)
-		(property "mfr_part" "19-217/R6C-AL1M2VY/6T"
+		(property "mfr_part" "KT-0603R"
 			(at 317.5 33.02 90)
 			(effects
 				(font
@@ -17259,7 +17367,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 63.5 36.83 0)
 			(effects
 				(font
@@ -17268,7 +17376,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/1810181811_TOSHIBA-CUS10S30-H3F_C146335.pdf"
 			(at 63.5 36.83 0)
 			(effects
 				(font
@@ -17643,7 +17751,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 241.3 100.33 0)
 			(effects
 				(font
@@ -17652,7 +17760,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/1810181811_TOSHIBA-CUS10S30-H3F_C146335.pdf"
 			(at 241.3 100.33 0)
 			(effects
 				(font
@@ -17744,9 +17852,9 @@
 		(at 274.32 57.15 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "73ee40a6-dcc0-4113-93f4-db43461c9265")
 		(property "Reference" "R3"
@@ -17868,9 +17976,9 @@
 		(at 96.52 57.15 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "740948b0-d6ff-417f-9d5a-1b4a2760de90")
 		(property "Reference" "R1"
@@ -18188,9 +18296,9 @@
 		(at 274.32 184.15 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "7bb6c923-e50a-433b-9b0a-5a77252e8b49")
 		(property "Reference" "R11"
@@ -18525,6 +18633,24 @@
 				(hide yes)
 			)
 		)
+		(property "jlc_part" "C2153097"
+			(at 264.16 228.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "G6K-2F-Y-TR DC3"
+			(at 264.16 228.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "fdb096a1-6cfb-493b-9cff-d85201ab969c")
 		)
@@ -18622,7 +18748,7 @@
 				(hide yes)
 			)
 		)
-		(property "jlc_part" "C2986060"
+		(property "jlc_part" "C2286"
 			(at 50.8 223.52 90)
 			(effects
 				(font
@@ -18631,7 +18757,7 @@
 				(hide yes)
 			)
 		)
-		(property "mfr_part" "19-217/R6C-AL1M2VY/6T"
+		(property "mfr_part" "KT-0603R"
 			(at 50.8 223.52 90)
 			(effects
 				(font
@@ -19146,9 +19272,9 @@
 		(at 96.52 247.65 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "825ba6f7-44b4-4b58-a43a-d810be2575c8")
 		(property "Reference" "R13"
@@ -19348,6 +19474,24 @@
 			)
 		)
 		(property "ppm" ""
+			(at 86.36 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "jlc_part" "C2153097"
+			(at 86.36 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "G6K-2F-Y-TR DC3"
 			(at 86.36 101.6 0)
 			(effects
 				(font
@@ -19649,7 +19793,7 @@
 				(hide yes)
 			)
 		)
-		(property "jlc_part" "C2986060"
+		(property "jlc_part" "C2286"
 			(at 317.5 160.02 90)
 			(effects
 				(font
@@ -19658,7 +19802,7 @@
 				(hide yes)
 			)
 		)
-		(property "mfr_part" "19-217/R6C-AL1M2VY/6T"
+		(property "mfr_part" "KT-0603R"
 			(at 317.5 160.02 90)
 			(effects
 				(font
@@ -19745,7 +19889,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 241.3 36.83 0)
 			(effects
 				(font
@@ -19754,7 +19898,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/1810181811_TOSHIBA-CUS10S30-H3F_C146335.pdf"
 			(at 241.3 36.83 0)
 			(effects
 				(font
@@ -19933,7 +20077,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 241.3 227.33 0)
 			(effects
 				(font
@@ -19942,7 +20086,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/1810181811_TOSHIBA-CUS10S30-H3F_C146335.pdf"
 			(at 241.3 227.33 0)
 			(effects
 				(font
@@ -20112,6 +20256,24 @@
 			)
 		)
 		(property "ppm" ""
+			(at 353.06 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "jlc_part" "C2153097"
+			(at 353.06 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "G6K-2F-Y-TR DC3"
 			(at 353.06 165.1 0)
 			(effects
 				(font
@@ -20498,6 +20660,24 @@
 			)
 		)
 		(property "ppm" ""
+			(at 353.06 228.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "jlc_part" "C2153097"
+			(at 353.06 228.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "G6K-2F-Y-TR DC3"
 			(at 353.06 228.6 0)
 			(effects
 				(font
@@ -21144,6 +21324,24 @@
 				(hide yes)
 			)
 		)
+		(property "jlc_part" "C2153097"
+			(at 86.36 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "G6K-2F-Y-TR DC3"
+			(at 86.36 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "552087d6-d766-49b8-887a-59f62cbcde74")
 		)
@@ -21267,9 +21465,9 @@
 		(at 274.32 120.65 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "9741d7c8-0799-4000-bb1e-302051e763a3")
 		(property "Reference" "R7"
@@ -21498,7 +21696,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 63.5 227.33 0)
 			(effects
 				(font
@@ -21507,7 +21705,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/1810181811_TOSHIBA-CUS10S30-H3F_C146335.pdf"
 			(at 63.5 227.33 0)
 			(effects
 				(font
@@ -21742,6 +21940,24 @@
 			)
 		)
 		(property "ppm" ""
+			(at 353.06 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "jlc_part" "C2153097"
+			(at 353.06 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "G6K-2F-Y-TR DC3"
 			(at 353.06 101.6 0)
 			(effects
 				(font
@@ -22511,9 +22727,9 @@
 		(at 363.22 57.15 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "a9571265-038d-4f08-b9ba-2d7d98e5e5b9")
 		(property "Reference" "R4"
@@ -22765,9 +22981,9 @@
 		(at 274.32 247.65 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "ab1c514c-7f64-41bb-955d-250db7c03878")
 		(property "Reference" "R15"
@@ -22889,9 +23105,9 @@
 		(at 185.42 247.65 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "ab3bd826-7854-48dd-b239-82b41ecb9954")
 		(property "Reference" "R14"
 			(at 187.96 246.3799 0)
@@ -23221,6 +23437,24 @@
 			)
 		)
 		(property "ppm" ""
+			(at 175.26 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "jlc_part" "C2153097"
+			(at 175.26 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "G6K-2F-Y-TR DC3"
 			(at 175.26 38.1 0)
 			(effects
 				(font
@@ -23654,9 +23888,9 @@
 		(at 185.42 184.15 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "b5387824-3f45-4c37-83de-6ecd699cca9c")
 		(property "Reference" "R10"
@@ -24351,7 +24585,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 330.2 36.83 0)
 			(effects
 				(font
@@ -24360,7 +24594,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/1810181811_TOSHIBA-CUS10S30-H3F_C146335.pdf"
 			(at 330.2 36.83 0)
 			(effects
 				(font
@@ -24474,7 +24708,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 152.4 36.83 0)
 			(effects
 				(font
@@ -24483,7 +24717,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/1810181811_TOSHIBA-CUS10S30-H3F_C146335.pdf"
 			(at 152.4 36.83 0)
 			(effects
 				(font
@@ -24923,6 +25157,24 @@
 				(hide yes)
 			)
 		)
+		(property "jlc_part" "C2153097"
+			(at 86.36 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "G6K-2F-Y-TR DC3"
+			(at 86.36 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "a1906034-e267-4a71-81ac-e4cccf5b181c")
 		)
@@ -25190,7 +25442,7 @@
 				(hide yes)
 			)
 		)
-		(property "jlc_part" "C2986060"
+		(property "jlc_part" "C2286"
 			(at 139.7 160.02 90)
 			(effects
 				(font
@@ -25199,7 +25451,7 @@
 				(hide yes)
 			)
 		)
-		(property "mfr_part" "19-217/R6C-AL1M2VY/6T"
+		(property "mfr_part" "KT-0603R"
 			(at 139.7 160.02 90)
 			(effects
 				(font
@@ -25409,7 +25661,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 152.4 227.33 0)
 			(effects
 				(font
@@ -25418,7 +25670,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/1810181811_TOSHIBA-CUS10S30-H3F_C146335.pdf"
 			(at 152.4 227.33 0)
 			(effects
 				(font
@@ -25908,7 +26160,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 63.5 100.33 0)
 			(effects
 				(font
@@ -25917,7 +26169,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/1810181811_TOSHIBA-CUS10S30-H3F_C146335.pdf"
 			(at 63.5 100.33 0)
 			(effects
 				(font
@@ -26876,6 +27128,24 @@
 				(hide yes)
 			)
 		)
+		(property "jlc_part" "C2153097"
+			(at 86.36 228.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "G6K-2F-Y-TR DC3"
+			(at 86.36 228.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "b9a62bed-c895-4097-9d85-774b63bc3806")
 		)
@@ -26936,7 +27206,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 152.4 163.83 0)
 			(effects
 				(font
@@ -26945,7 +27215,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/1810181811_TOSHIBA-CUS10S30-H3F_C146335.pdf"
 			(at 152.4 163.83 0)
 			(effects
 				(font
@@ -27319,6 +27589,24 @@
 				(hide yes)
 			)
 		)
+		(property "jlc_part" "C2153097"
+			(at 264.16 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mfr_part" "G6K-2F-Y-TR DC3"
+			(at 264.16 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "cbaba1fc-5157-413f-a25f-c93d9981d14f")
 		)
@@ -27357,9 +27645,9 @@
 		(at 363.22 120.65 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "ddf2a4ad-87c3-4218-9f00-dafd18970d39")
 		(property "Reference" "R8"
@@ -27663,7 +27951,7 @@
 				(hide yes)
 			)
 		)
-		(property "jlc_part" "C2986060"
+		(property "jlc_part" "C2286"
 			(at 139.7 33.02 90)
 			(effects
 				(font
@@ -27672,7 +27960,7 @@
 				(hide yes)
 			)
 		)
-		(property "mfr_part" "19-217/R6C-AL1M2VY/6T"
+		(property "mfr_part" "KT-0603R"
 			(at 139.7 33.02 90)
 			(effects
 				(font
@@ -27861,7 +28149,7 @@
 				(hide yes)
 			)
 		)
-		(property "jlc_part" "C2986060"
+		(property "jlc_part" "C2286"
 			(at 228.6 223.52 90)
 			(effects
 				(font
@@ -27870,7 +28158,7 @@
 				(hide yes)
 			)
 		)
-		(property "mfr_part" "19-217/R6C-AL1M2VY/6T"
+		(property "mfr_part" "KT-0603R"
 			(at 228.6 223.52 90)
 			(effects
 				(font
@@ -27994,7 +28282,7 @@
 				(hide yes)
 			)
 		)
-		(property "jlc_part" "C2986060"
+		(property "jlc_part" "C2286"
 			(at 317.5 96.52 90)
 			(effects
 				(font
@@ -28003,7 +28291,7 @@
 				(hide yes)
 			)
 		)
-		(property "mfr_part" "19-217/R6C-AL1M2VY/6T"
+		(property "mfr_part" "KT-0603R"
 			(at 317.5 96.52 90)
 			(effects
 				(font
@@ -28218,9 +28506,9 @@
 		(at 363.22 184.15 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "e6906550-3264-4c61-888b-3dea57738c67")
 		(property "Reference" "R12"
@@ -28901,7 +29189,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-323_HandSoldering"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 330.2 100.33 0)
 			(effects
 				(font
@@ -28910,7 +29198,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/1810181811_TOSHIBA-CUS10S30-H3F_C146335.pdf"
 			(at 330.2 100.33 0)
 			(effects
 				(font
@@ -29146,7 +29434,7 @@
 				(hide yes)
 			)
 		)
-		(property "jlc_part" "C2986060"
+		(property "jlc_part" "C2286"
 			(at 228.6 160.02 90)
 			(effects
 				(font
@@ -29155,7 +29443,7 @@
 				(hide yes)
 			)
 		)
-		(property "mfr_part" "19-217/R6C-AL1M2VY/6T"
+		(property "mfr_part" "KT-0603R"
 			(at 228.6 160.02 90)
 			(effects
 				(font
@@ -29500,9 +29788,9 @@
 		(at 96.52 184.15 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "f86c459e-097c-441f-a25c-81f2977ee14a")
 		(property "Reference" "R9"
@@ -29878,7 +30166,7 @@
 				(hide yes)
 			)
 		)
-		(property "jlc_part" "C2986060"
+		(property "jlc_part" "C2286"
 			(at 139.7 96.52 90)
 			(effects
 				(font
@@ -29887,7 +30175,7 @@
 				(hide yes)
 			)
 		)
-		(property "mfr_part" "19-217/R6C-AL1M2VY/6T"
+		(property "mfr_part" "KT-0603R"
 			(at 139.7 96.52 90)
 			(effects
 				(font
