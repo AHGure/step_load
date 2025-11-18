@@ -7943,7 +7943,7 @@
 	)
 	(global_label "USB_ESP-"
 		(shape bidirectional)
-		(at 62.23 48.26 0)
+		(at 62.23 43.18 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -7953,7 +7953,7 @@
 		)
 		(uuid "20d684d4-cf13-40b8-bb9f-d8df8f3d4832")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 76.305 48.26 0)
+			(at 76.305 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7987,7 +7987,7 @@
 	)
 	(global_label "USB_ESP+"
 		(shape bidirectional)
-		(at 62.23 43.18 0)
+		(at 62.23 48.26 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -7997,7 +7997,7 @@
 		)
 		(uuid "2f403268-cc1c-44a5-bd07-95a420343556")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 76.305 43.18 0)
+			(at 76.305 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
