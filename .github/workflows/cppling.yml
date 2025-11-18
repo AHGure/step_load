@@ -1,0 +1,19 @@
+name: CPPLint
+
+on: push
+
+jobs:
+  build_and_check:
+    runs-on: ubuntu-latest
+
+    steps:
+        # Check out the last code from the repository
+      - uses: actions/checkout@v4
+      
+      - name: Install cpplint
+        run: |
+          sudo apt-get install -y python3-pip
+          pip3 install cpplint
+
+      - name: Run cpplint
+        run: cpplint --filter=-readability/casting --extensions=ino  "./fw/fw.ino"
