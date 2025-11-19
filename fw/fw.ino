@@ -54,15 +54,25 @@ void setup() {
         Serial.println(F("SSD1306 allocation failed"));
         for (;;) {}
     }
-    TCA.pinMode1(0, OUTPUT);
-    TCA.pinMode1(1, OUTPUT);
-    TCA.pinMode1(2, OUTPUT);
-    TCA.pinMode1(3, OUTPUT);
-    TCA.write1(0, LOW);
-    TCA.write1(1, LOW);
-    TCA.write1(2, LOW);
-    TCA.write1(3, LOW);
-    // delay(5000);
+    // Clear the buffer
+    display.clearDisplay();
+    display.invertDisplay(true);
+    delay(1000);
+    display.invertDisplay(false);
+    delay(1000);
+    for( int i = 0; i < 16; i++ ) {
+        TCA.pinMode1(i, OUTPUT);
+        TCA.write1(i, LOW);
+    }
+    delay(2000);
+    for( int i = 0; i < 16; i++ ) {
+        TCA.write1(i, HIGH);
+        delay(3000);
+        TCA.write1(i, LOW);
+        delay(10);
+    }
+
+
     // TCA.write1(0, HIGH);
     // delay(5000);
     // TCA.write1(1, HIGH);
@@ -71,6 +81,9 @@ void setup() {
     // delay(5000);
     // TCA.write1(3, HIGH);
     // delay(5000);
+    // display.display();
+    // delay(2000);    // Pause for 2 seconds
+
 }
 void loop() {
     digitalWrite(LED_PIN, HIGH);
