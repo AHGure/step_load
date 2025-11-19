@@ -75,3 +75,6 @@ fp-info-cache
 
 # Libraries
 /lib
+
+# exclude build directory
+/build/

@@ -1,7 +1,7 @@
 
 BOARD?=esp32:esp32:esp32c3
 
-PORT?=COM3
+PORT?=COM10
 
 FW_PATH?=fw
 BUILD = build
