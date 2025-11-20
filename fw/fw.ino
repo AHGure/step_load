@@ -20,7 +20,7 @@ November 2025
 #define OLED_RESET     -1   // Reset pin # (or -1 if sharing Arduino reset pin)
 
 // allowing a 16-bit write in one transmission.
-const byte REG_OUTPUT_PORT_0 = 0x02; 
+const byte REG_OUTPUT_PORT_0 = 0x02;
 
 // The desired state: 0x0000 (all 16 pins LOW)
 const uint16_t ALL_LOW = 0x0000;
@@ -54,24 +54,18 @@ static const unsigned char PROGMEM logo_bmp[] =
   // The function that performs the write
 void setAllOutputsLow() {
   Serial.print("Sending 0x0000 to Output Port Register (0x02)... ");
-  
   // Start the I2C transmission to the TCA9535
   Wire.beginTransmission(I2C_IOEXP_ADDRESS);
-  
   // 1. Specify the register we want to write to (Output Port 0)
-  Wire.write(REG_OUTPUT_PORT_0); 
-  
+  Wire.write(REG_OUTPUT_PORT_0);
   // 2. Write the LOW byte (Port 0: P0_0 to P0_7)
-  // We use bitwise shifting to extract the low 8 bits of ALL_LOW (which is 0x0000)
-  Wire.write((uint8_t)(ALL_LOW & 0xFF)); 
-  
+  // We use bitwise shifting to extract the low 8 bits of ALL_LOW (0x0000)
+  Wire.write((uint8_t)(ALL_LOW & 0xFF));
   // 3. Write the HIGH byte (Port 1: P1_0 to P1_7)
-  // We use bitwise shifting to extract the high 8 bits of ALL_LOW (which is 0x0000)
-  Wire.write((uint8_t)(ALL_LOW >> 8)); 
-  
+  // We use bitwise shifting to extract the high 8 bits of ALL_LOW (0x0000)
+  Wire.write((uint8_t)(ALL_LOW >> 8));
   // End the transmission and check for success
-  byte status = Wire.endTransmission(); 
-  
+  byte status = Wire.endTransmission();
   if (status == 0) {
     Serial.println("SUCCESS. Output Latch is now set to LOW.");
   } else {
@@ -84,11 +78,9 @@ void setup() {
     digitalWrite(LED_PIN, LOW);
     Serial.begin(9600);
     Wire.begin(I2C_SDA_PIN, I2C_SCL_PIN);
-    
     TCA.begin();
     // Execute the critical function immediately after I2C init
-    setAllOutputsLow(); 
-
+    setAllOutputsLow();
     if ( !display.begin(SSD1306_SWITCHCAPVCC, I2C_OLED_ADDRESS) ) {
         Serial.println(F("SSD1306 allocation failed"));
         for (;;) {}
