@@ -29,3 +29,5 @@ clean:
 # make lint build flash clean
 # or
 # make - to run everything
+# Passing arguments:
+# make PORT=COM3

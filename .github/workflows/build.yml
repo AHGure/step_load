@@ -25,7 +25,7 @@ jobs:
           arduino-cli core install esp32:esp32
 
       - name: Install libraries
-        run: arduino-cli lib install "WiFiManager" "ArduinoOTA" "ArduinoJson" "WebSockets" "TCA9555" || true
+        run: arduino-cli lib install "WiFiManager" "ArduinoOTA" "ArduinoJson" "WebSockets" "TCA9555" "Adafruit_GFX" "Adafruit_SSD1306"|| true
 
       - name: Compile Sketch
         run: make build BOARD=esp32:esp32:esp32c3
