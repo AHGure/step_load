@@ -28,6 +28,8 @@ November 2025
 #define TEMP_AMB_PIN 2
 #define TEMP_RES_PIN 3
 
+
+
 // allowing a 16-bit write in one transmission.
 const byte REG_OUTPUT_PORT_0 = 0x02;
 
@@ -42,7 +44,11 @@ void initDisplay();
 void displayValue(char* value, int col, int row);
 void displayTRES(char* tres);
 void displayTAMB(char* tamb);
+void displayResistor(char* resistor);
 void getTempAndDisplay();
+void initIOExpander();
+void selectResistor(uint8_t parResistor);
+void setResistorAndDelay(uint8_t parResistor);
 
 // Interrupt handler for button 1
 void IRAM_ATTR button1ISR() {
@@ -61,16 +67,15 @@ void IRAM_ATTR button3ISR() {
 
   // The function that performs the write
 void setAllOutputsLow() {
-  Serial.print("Sending 0x0000 to Output Port Register (0x02)... ");
   Wire.beginTransmission(I2C_IOEXP_ADDRESS);
   Wire.write(REG_OUTPUT_PORT_0);
   Wire.write((uint8_t)(ALL_LOW & 0xFF));
   Wire.write((uint8_t)(ALL_LOW >> 8));
   byte status = Wire.endTransmission();
   if (status == 0) {
-    Serial.println("SUCCESS. Output Latch is now set to LOW.");
+    Serial.println("IO Expander: All outputs set to LOW");
   } else {
-    Serial.printf("FAILURE. Error code: %d\n", status);
+    Serial.printf("IO Expander error: %d\n", status);
   }
 }
 
@@ -100,14 +105,19 @@ void setup() {
     }
     // Execute the critical function immediately after I2C init
     setAllOutputsLow();
+    initIOExpander();
     // Initialize display (display.begin is called inside initDisplay)
     initDisplay();
+    // Initialize IO Expander
+    // Select initial resistor load (e.g., 1 resistor)
+    // selectResistor(1);
 }
 void loop() {
     if ( !digitalRead(USER_BTN1_PIN) ) Serial.println("button1");
     if ( !digitalRead(USER_BTN2_PIN) ) Serial.println("button2");
     if ( !digitalRead(USER_BTN3_PIN) ) Serial.println("button3");
     getTempAndDisplay();
+    setResistorAndDelay(1);
     delay(500);
 }
 
@@ -160,6 +170,11 @@ void displayTAMB(char* tamb) {
     displayValue(tamb, 70, 48);
 }
 
+void displayResistor(char* resistor) {
+    // initDisplay();
+    displayValue(resistor, 70, 18);
+}
+
 void getTempAndDisplay() {
     // Read LM35DZ sensor value
     int tempResistor = analogRead(TEMP_RES_PIN);
@@ -174,4 +189,51 @@ void getTempAndDisplay() {
             "%.1f", temperatureAmbC);
     displayTRES(temperatureCStr);
     displayTAMB(temperatureAmbCStr);
+}
+
+void initIOExpander() {
+    // TCA.begin();
+    // Set all pins of Port 0 and Port 1 as outputs (0)
+    TCA.pinMode1(0, OUTPUT);
+    TCA.pinMode1(1, OUTPUT);
+    TCA.pinMode1(2, OUTPUT);
+    TCA.pinMode1(3, OUTPUT);
+    TCA.pinMode1(4, OUTPUT);
+    TCA.pinMode1(5, OUTPUT);
+    TCA.pinMode1(6, OUTPUT);
+    TCA.pinMode1(7, OUTPUT);
+    TCA.pinMode1(8, OUTPUT);
+    TCA.pinMode1(9, OUTPUT);
+    TCA.pinMode1(10, OUTPUT);
+    TCA.pinMode1(11, OUTPUT);
+    TCA.pinMode1(12, OUTPUT);
+    TCA.pinMode1(13, OUTPUT);
+    TCA.pinMode1(14, OUTPUT);
+    TCA.pinMode1(15, OUTPUT);
+}
+
+void selectResistor(uint8_t parResistor) {
+    if(parResistor > 16)
+    {
+      parResistor = 16;
+    }
+    else if(parResistor < 1)
+    {
+      parResistor = 1;
+    }
+
+    for(uint8_t i = 0; i < parResistor; i++)
+    {
+      TCA.write1(i, HIGH);
+    }
+}
+
+void setResistorAndDelay(uint8_t parResistor) {
+  char parResistorStr[6];
+  float resistorValue = 100.0 / parResistor;
+    snprintf((char*)parResistorStr, sizeof(parResistorStr),
+            "%.1f", resistorValue);
+  selectResistor(parResistor);
+  displayResistor(parResistorStr);
+  delay(10);
 }
