@@ -40,9 +40,9 @@ volatile int btn1Pressed = 0;
 volatile int btn2Pressed = 0;
 volatile int btn3Pressed = 0;
 
-volatile long btn1PressTimer = 0;
-volatile long btn2PressTimer = 0;
-volatile long btn3PressTimer = 0;
+volatile uint64_t btn1PressTimer = 0;
+volatile uint64_t btn2PressTimer = 0;
+volatile uint64_t btn3PressTimer = 0;
 
 volatile uint8_t selectedResistor = 1;
 
@@ -56,46 +56,27 @@ enum changeState {
 TCA9535 TCA(I2C_IOEXP_ADDRESS);
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
-volatile long lastBtn1Interrupt = 0;
-volatile long lastBtn2Interrupt = 0;
-volatile long lastBtn3Interrupt = 0;
+volatile uint64_t lastBtn1Interrupt = 0;
+volatile uint64_t lastBtn2Interrupt = 0;
+volatile uint64_t lastBtn3Interrupt = 0;
 
-void IRAM_ATTR handleBtn1Press() {
-    long now = millis();
-    if (now - lastBtn1Interrupt > DEBOUNCE_MS) {
-        btn1Pressed = 1;
-        btn1PressTimer = now;
-        lastBtn1Interrupt = now;
-        digitalWrite(LED_PIN, HIGH);
-        delay(50);
-        digitalWrite(LED_PIN, LOW);
-    }
-}
-void IRAM_ATTR handleBtn2Press() {
-    long now = millis();
-    if (now - lastBtn2Interrupt > DEBOUNCE_MS) {
-        btn2Pressed = 1;
-        btn2PressTimer = now;
-        lastBtn2Interrupt = now;
-        digitalWrite(LED_PIN, HIGH);
-        delay(50);
-        digitalWrite(LED_PIN, LOW);
-    }
-}
-void IRAM_ATTR handleBtn3Press() {
-    long now = millis();
-    if (now - lastBtn3Interrupt > DEBOUNCE_MS) {
-        btn3Pressed = 1;
-        btn3PressTimer = now;
-        lastBtn3Interrupt = now;
-        digitalWrite(LED_PIN, HIGH);
-        delay(50);
-        digitalWrite(LED_PIN, LOW);
-        delay(50);
-        digitalWrite(LED_PIN, HIGH);
-        delay(50);
-        digitalWrite(LED_PIN, LOW);
-    }
+void IRAM_ATTR handleBtnPress() {
+ if ( digitalRead(USER_BTN1_PIN) == LOW ) {
+    uint64_t currentInterruptTime = millis();
+    btn1Pressed = 1;
+ }
+ else if ( digitalRead(USER_BTN2_PIN) == LOW )
+ {
+    uint64_t currentInterruptTime = millis();
+    btn2Pressed = 1;
+ }
+ else if ( digitalRead(USER_BTN3_PIN) == LOW )
+ {
+    uint64_t currentInterruptTime = millis();
+    btn3Pressed = 1;
+    
+ }
+ 
 }
 void initDisplay();
 void displayValue(char* value, int col, int row);
@@ -138,9 +119,9 @@ void setup() {
     delay(100);
     Serial.println("Starting setup...");
     // Configure button pins with internal pull-up resistors
-    pinMode(USER_BTN1_PIN, INPUT);
-    pinMode(USER_BTN2_PIN, INPUT);
-    pinMode(USER_BTN3_PIN, INPUT);
+    pinMode(USER_BTN1_PIN, INPUT_PULLUP);
+    pinMode(USER_BTN2_PIN, INPUT_PULLUP);
+    pinMode(USER_BTN3_PIN, INPUT_PULLUP);
     pinMode(TEMP_AMB_PIN, INPUT);
     pinMode(TEMP_RES_PIN, INPUT);
     Wire.begin(I2C_SDA_PIN, I2C_SCL_PIN);
@@ -154,13 +135,10 @@ void setup() {
     initIOExpander();
     // Initialize display (display.begin is called inside initDisplay)
     initDisplay();
-    // Initialize IO Expander
-    // Select initial resistor load (e.g., 1 resistor)
-    // selectResistor(1);
     
-    attachInterrupt(digitalPinToInterrupt(USER_BTN1_PIN), handleBtn1Press, FALLING);
-    attachInterrupt(digitalPinToInterrupt(USER_BTN2_PIN), handleBtn2Press, FALLING);
-    attachInterrupt(digitalPinToInterrupt(USER_BTN3_PIN), handleBtn3Press, FALLING);
+    attachInterrupt(digitalPinToInterrupt(USER_BTN1_PIN), handleBtnPress, FALLING);
+    attachInterrupt(digitalPinToInterrupt(USER_BTN2_PIN), handleBtnPress, FALLING);
+    attachInterrupt(digitalPinToInterrupt(USER_BTN3_PIN), handleBtnPress, FALLING);
 }
 
 void loop() {
@@ -170,38 +148,57 @@ void loop() {
     // Handle Button 1 Press
     if (btn1Pressed) {
       ResistorState = DECREASE;
+      Serial.println("Button 1 Pressed");
+      LEDBlink();
       btn1Pressed = 0;
     }
     if(btn2Pressed) {
         ResistorState = INCREASE;
+        Serial.println("Button 2 Pressed");
+        LEDBlink();
         btn2Pressed = 0;
     }
     if(btn3Pressed) {
         ResistorState = NO_CHANGE;
+        Serial.println("Button 3 Pressed");
+        LEDBlink();
         btn3Pressed = 0;
     }
     switch (ResistorState)
     {
       case INCREASE:
+        Serial.println("INCREASE");
+        Serial.print("seletedResistor = ");
+        Serial.println(selectedResistor);
         if (selectedResistor < 16) selectedResistor++;
         else selectedResistor = 16;
+        Serial.print("seletedResistor = ");
+        Serial.println(selectedResistor);
         setResistorAndDelay(selectedResistor);
         ResistorState = NO_CHANGE;
         break;
       case DECREASE:
-        if (selectedResistor > 1) selectedResistor--;
-        else selectedResistor = 1;
+        Serial.println("DECREASE");
+        Serial.print("seletedResistor = ");
+        Serial.println(selectedResistor);
+        if (selectedResistor < 2) selectedResistor=1;
+        else selectedResistor--;
+        Serial.print("seletedResistor = ");
+        Serial.println(selectedResistor);
         setResistorAndDelay(selectedResistor);
         ResistorState = NO_CHANGE;
         break;
       case NO_CHANGE:
+        // Serial.println("NO_CHANGE");
+        // Serial.print("seletedResistor = ");
+        // Serial.println(selectedResistor);
         // Do nothing
         // setResistorAndDelay(selectedResistor);
         break;
     }
 
     getTempAndDisplay();
-    setResistorAndDelay(1);
+    // setResistorAndDelay(1);  // Removed: was resetting selectedResistor to 1 every loop
     delay(500);
 }
 
@@ -298,12 +295,22 @@ void initIOExpander() {
 }
 
 uint8_t selectResistor(uint8_t parResistor) {
-    selectedResistor = parResistor;
+    uint8_t currentResistor = parResistor;
+    
     if (parResistor > 16) parResistor = 16;
-    else if (parResistor < 1)parResistor = 1;
+    else if (parResistor < 1) parResistor = 1;
 
-    for (uint8_t i = 0; i < parResistor; i++)TCA.write1(i, HIGH);
-
+    // First, set all pins to LOW
+    for (uint8_t i = 0; i < 16; i++) {
+      TCA.write1(i, LOW);
+    }
+    
+    // Then set the required pins to HIGH
+    for (uint8_t i = 0; i < parResistor; i++) {
+      TCA.write1(i, HIGH);
+    }
+    
+    selectedResistor = currentResistor;
     return parResistor;
 }
 
