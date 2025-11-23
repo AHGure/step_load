@@ -8,16 +8,25 @@ November 2025
 #include "TCA9555.h"
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+#include <cstdio>
 
-#define LED_PIN 10
-#define I2C_IOEXP_ADDRESS 0x20
-#define I2C_OLED_ADDRESS 0x3C
-#define I2C_SDA_PIN 4
-#define I2C_SCL_PIN 5
+#define LED_PIN             10
+#define I2C_IOEXP_ADDRESS   0x20
+#define I2C_OLED_ADDRESS    0x3C
+#define I2C_SDA_PIN         4
+#define I2C_SCL_PIN         5
 
-#define SCREEN_WIDTH 128    // OLED display width, in pixels
-#define SCREEN_HEIGHT 32    // OLED display height, in pixels
-#define OLED_RESET     -1   // Reset pin # (or -1 if sharing Arduino reset pin)
+#define SCREEN_WIDTH    128
+#define SCREEN_HEIGHT   64
+#define OLED_RESET      -1
+
+/*BUTTONS*/
+#define USER_BTN1_PIN 6
+#define USER_BTN2_PIN 7
+#define USER_BTN3_PIN 8
+
+#define TEMP_AMB_PIN 2
+#define TEMP_RES_PIN 3
 
 // allowing a 16-bit write in one transmission.
 const byte REG_OUTPUT_PORT_0 = 0x02;
@@ -26,45 +35,37 @@ const byte REG_OUTPUT_PORT_0 = 0x02;
 const uint16_t ALL_LOW = 0x0000;
 
 TCA9535 TCA(I2C_IOEXP_ADDRESS);
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
-#define NUMFLAKES     10    // Number of snowflakes in the animation example
 
-#define LOGO_HEIGHT   16
-#define LOGO_WIDTH    16
-static const unsigned char PROGMEM logo_bmp[] =
-{ 0b00000000, 0b11000000,
-  0b00000001, 0b11000000,
-  0b00000001, 0b11000000,
-  0b00000011, 0b11100000,
-  0b11110011, 0b11100000,
-  0b11111110, 0b11111000,
-  0b01111110, 0b11111111,
-  0b00110011, 0b10011111,
-  0b00011111, 0b11111100,
-  0b00001101, 0b01110000,
-  0b00011011, 0b10100000,
-  0b00111111, 0b11100000,
-  0b00111111, 0b11110000,
-  0b01111100, 0b11110000,
-  0b01110000, 0b01110000,
-  0b00000000, 0b00110000 };
+void initDisplay();
+void displayValue(char* value, int col, int row);
+void displayTRES(char* tres);
+void displayTAMB(char* tamb);
+void getTempAndDisplay();
 
+// Interrupt handler for button 1
+void IRAM_ATTR button1ISR() {
+    Serial.println("button1");
+}
+
+// Interrupt handler for button 2
+void IRAM_ATTR button2ISR() {
+    Serial.println("button2");
+}
+
+// Interrupt handler for button 3
+void IRAM_ATTR button3ISR() {
+    Serial.println("button3");
+}
 
   // The function that performs the write
 void setAllOutputsLow() {
   Serial.print("Sending 0x0000 to Output Port Register (0x02)... ");
-  // Start the I2C transmission to the TCA9535
   Wire.beginTransmission(I2C_IOEXP_ADDRESS);
-  // 1. Specify the register we want to write to (Output Port 0)
   Wire.write(REG_OUTPUT_PORT_0);
-  // 2. Write the LOW byte (Port 0: P0_0 to P0_7)
-  // We use bitwise shifting to extract the low 8 bits of ALL_LOW (0x0000)
   Wire.write((uint8_t)(ALL_LOW & 0xFF));
-  // 3. Write the HIGH byte (Port 1: P1_0 to P1_7)
-  // We use bitwise shifting to extract the high 8 bits of ALL_LOW (0x0000)
   Wire.write((uint8_t)(ALL_LOW >> 8));
-  // End the transmission and check for success
   byte status = Wire.endTransmission();
   if (status == 0) {
     Serial.println("SUCCESS. Output Latch is now set to LOW.");
@@ -76,48 +77,101 @@ void setAllOutputsLow() {
 void setup() {
     pinMode(LED_PIN, OUTPUT);
     digitalWrite(LED_PIN, LOW);
-    Serial.begin(9600);
+    Serial.begin(115200);
+    // Wait for serial to initialize
+    delay(100);
+    Serial.println("Starting setup...");
+    // Configure button pins with internal pull-up resistors
+    pinMode(USER_BTN1_PIN, INPUT_PULLUP);
+    pinMode(USER_BTN2_PIN, INPUT_PULLUP);
+    pinMode(USER_BTN3_PIN, INPUT_PULLUP);
+    pinMode(TEMP_AMB_PIN, INPUT);
+    pinMode(TEMP_RES_PIN, INPUT);
+    // Attach interrupts for buttons (trigger on falling edge when pressed)
+    attachInterrupt(digitalPinToInterrupt(USER_BTN1_PIN), button1ISR, FALLING);
+    attachInterrupt(digitalPinToInterrupt(USER_BTN2_PIN), button2ISR, FALLING);
+    attachInterrupt(digitalPinToInterrupt(USER_BTN3_PIN), button3ISR, FALLING);
+    Serial.println("Interrupts attached");
     Wire.begin(I2C_SDA_PIN, I2C_SCL_PIN);
     TCA.begin();
+    if ( !display.begin(SSD1306_SWITCHCAPVCC, I2C_OLED_ADDRESS) ) {
+      Serial.println(F("SSD1306 allocation failed"));
+      for (;;) { }
+    }
     // Execute the critical function immediately after I2C init
     setAllOutputsLow();
-    if ( !display.begin(SSD1306_SWITCHCAPVCC, I2C_OLED_ADDRESS) ) {
-        Serial.println(F("SSD1306 allocation failed"));
-        for (;;) {}
-    }
-    // Clear the buffer
-    display.clearDisplay();
-    display.invertDisplay(true);
-    delay(1000);
-    display.invertDisplay(false);
-    delay(1000);
-    for ( int i = 0; i < 16; i++ ) {
-        TCA.pinMode1(i, OUTPUT);
-        TCA.write1(i, LOW);
-    }
-    delay(2000);
-    for ( int i = 0; i < 16; i++ ) {
-        TCA.write1(i, HIGH);
-        delay(3000);
-        TCA.write1(i, LOW);
-        delay(10);
-    }
-
-
-    // TCA.write1(0, HIGH);
-    // delay(5000);
-    // TCA.write1(1, HIGH);
-    // delay(5000);
-    // TCA.write1(2, HIGH);
-    // delay(5000);
-    // TCA.write1(3, HIGH);
-    // delay(5000);
-    // display.display();
-    // delay(2000);    // Pause for 2 seconds
+    // Initialize display (display.begin is called inside initDisplay)
+    initDisplay();
 }
 void loop() {
-    digitalWrite(LED_PIN, HIGH);
-    delay(100);
-    digitalWrite(LED_PIN, LOW);
-    delay(100);
+    if ( !digitalRead(USER_BTN1_PIN) ) Serial.println("button1");
+    if ( !digitalRead(USER_BTN2_PIN) ) Serial.println("button2");
+    if ( !digitalRead(USER_BTN3_PIN) ) Serial.println("button3");
+    getTempAndDisplay();
+    delay(500);
+}
+
+void initDisplay() {
+  display.clearDisplay();
+
+  // Draw shapes
+  display.drawRect(0, 0, 127, 64, SSD1306_WHITE);
+  display.drawLine(0, 17, 126, 17, SSD1306_WHITE);
+  // Draw text labels
+  display.setTextSize(2);
+  display.setTextColor(SSD1306_WHITE);
+  display.setCursor(4, 2);
+  display.print(F("LOAD STEP"));
+  // Resistor Label
+  display.setTextSize(2);
+  display.setCursor(4, 18);
+  display.print(F("RES"));
+  display.setCursor(70, 18);
+  display.print(F("6.25"));
+  // Resistor Temperature Label
+  display.setCursor(4, 33);
+  display.print(F("T.RES"));
+  // Ambient Temperature Label
+  display.setCursor(4, 48);
+  display.print(F("T.AMB"));
+  // Vertical line
+  display.drawLine(64, 17, 64, 64, SSD1306_WHITE);
+  // Initial values
+  display.display();
+}
+
+void displayValue(char* value, int col, int row) {
+    // initDisplay();
+    // Clear the area before displaying new value
+    display.fillRect(col, row, 54, 16, SSD1306_BLACK);
+    display.setTextSize(2);
+    display.setTextColor(SSD1306_WHITE);
+    display.setCursor(col, row);
+    display.print(value);
+    display.display();
+}
+
+void displayTRES(char* tres) {
+    // initDisplay();
+    displayValue(tres, 70, 33);
+}
+void displayTAMB(char* tamb) {
+    // initDisplay();
+    displayValue(tamb, 70, 48);
+}
+
+void getTempAndDisplay() {
+    // Read LM35DZ sensor value
+    int tempResistor = analogRead(TEMP_RES_PIN);
+    int tempAmbient = analogRead(TEMP_AMB_PIN);
+    float temperatureC = (tempResistor * 3.3 * 100.0) / 4096.0;
+    float temperatureAmbC = (tempAmbient * 3.3 * 100.0) / 4096.0;
+    char temperatureCStr[6];
+    char temperatureAmbCStr[6];
+    snprintf((char*)temperatureCStr, sizeof(temperatureCStr),
+            "%.1f", temperatureC);
+    snprintf((char*)temperatureAmbCStr, sizeof(temperatureAmbCStr),
+            "%.1f", temperatureAmbC);
+    displayTRES(temperatureCStr);
+    displayTAMB(temperatureAmbCStr);
 }
