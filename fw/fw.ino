@@ -54,7 +54,6 @@ enum changeState {
     ACCEPT_CHANGE
 } ResistorState = NO_CHANGE;
 
-
 TCA9535 TCA(I2C_IOEXP_ADDRESS);
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
@@ -65,28 +64,23 @@ volatile uint64_t lastBtn3Interrupt = 0;
 void IRAM_ATTR handleBtnPress() {
   noInterrupts();  // Disable interrupts during processing
   uint64_t currentTime = millis();
-  
+
   if ( digitalRead(USER_BTN1_PIN) == LOW ) {
       if (currentTime - lastBtn1Interrupt > DEBOUNCE_MS) {
         btn1Pressed = 1;
         lastBtn1Interrupt = currentTime;
       }
-  }
-  else if ( digitalRead(USER_BTN2_PIN) == LOW )
-  {
+  } else if ( digitalRead(USER_BTN2_PIN) == LOW ) {
       if (currentTime - lastBtn2Interrupt > DEBOUNCE_MS) {
         btn2Pressed = 1;
         lastBtn2Interrupt = currentTime;
       }
-  }
-  else if ( digitalRead(USER_BTN3_PIN) == LOW )
-  {
+  } else if ( digitalRead(USER_BTN3_PIN) == LOW ) {
       if (currentTime - lastBtn3Interrupt > DEBOUNCE_MS) {
         btn3Pressed = 1;
         lastBtn3Interrupt = currentTime;
       }
   }
- 
 }
 void initDisplay();
 void displayValue(char* value, int col, int row);
@@ -137,7 +131,7 @@ void setup() {
     Wire.begin(I2C_SDA_PIN, I2C_SCL_PIN);
     TCA.begin();
     if ( !display.begin(SSD1306_SWITCHCAPVCC, I2C_OLED_ADDRESS) ) {
-      Serial.println(F("SSD1306 allocation failed"));
+      Serial.println(F("SSD1306 connection failed!"));
       for (;;) { }
     }
     // Execute the critical function immediately after I2C init
@@ -147,49 +141,47 @@ void setup() {
     initDisplay();
     // Display initial state (all relays off)
     setResistorAndDelay(selectedResistor);
-    
-    attachInterrupt(digitalPinToInterrupt(USER_BTN1_PIN), handleBtnPress, FALLING);
-    attachInterrupt(digitalPinToInterrupt(USER_BTN2_PIN), handleBtnPress, FALLING);
-    attachInterrupt(digitalPinToInterrupt(USER_BTN3_PIN), handleBtnPress, FALLING);
+
+    attachInterrupt(digitalPinToInterrupt(USER_BTN1_PIN),
+                    handleBtnPress, FALLING);
+    attachInterrupt(digitalPinToInterrupt(USER_BTN2_PIN),
+                    handleBtnPress, FALLING);
+    attachInterrupt(digitalPinToInterrupt(USER_BTN3_PIN),
+                    handleBtnPress, FALLING);
 }
 
 void loop() {
     static int lastBtn1State = -1;
     static int lastBtn2State = -1;
     static int lastBtn3State = -1;
-    
+
     // Handle Button 1 Press (only if state is NO_CHANGE)
     if (btn1Pressed && ResistorState == NO_CHANGE) {
       btn1Pressed = 0;  // Clear flag immediately
       ResistorState = DECREASE;
-      Serial.println("Button 1 Pressed");
       LEDBlink();
     }
     // Handle Button 2 Press (only if state is NO_CHANGE)
-    if(btn2Pressed && ResistorState == NO_CHANGE) {
+    if (btn2Pressed && ResistorState == NO_CHANGE) {
         btn2Pressed = 0;  // Clear flag immediately
         ResistorState = INCREASE;
-        Serial.println("Button 2 Pressed");
         LEDBlink();
     }
     // Handle Button 3 Press
-    if(btn3Pressed) {
-        // noInterrupts();  // Disable interrupts during processing
+    if (btn3Pressed) {
         btn3Pressed = 0;  // Clear flag immediately
         ResistorState = ACCEPT_CHANGE;
-        Serial.println("Button 3 Pressed");
         LEDBlink();
     }
-    switch (ResistorState)
-    {
+    switch (ResistorState) {
       case INCREASE:
-        Serial.println("INCREASE");
+        Serial.println("ADD RESISTOR");
         if (selectedResistor < 16) selectedResistor++;
         else selectedResistor = 16;
         ResistorState = NO_CHANGE;
         break;
       case DECREASE:
-        Serial.println("DECREASE");
+        Serial.println("REMOVE RESISTOR");
         if (selectedResistor < 1) selectedResistor=0;
         else selectedResistor--;
         ResistorState = NO_CHANGE;
@@ -197,17 +189,17 @@ void loop() {
       case ACCEPT_CHANGE:
         Serial.println("ACCEPT_CHANGE");
         // Currently no specific action defined for ACCEPT_CHANGE
-        Serial.print("seletedResistor = ");
+        Serial.print("No. Resistors in parallel: ");
         Serial.println(selectedResistor);
         setResistorAndDelay(selectedResistor);
         ResistorState = NO_CHANGE;
-        break;        
+        break;
       case NO_CHANGE:
         break;
     }
 
     getTempAndDisplay();
-    // setResistorAndDelay(1);  // Removed: was resetting selectedResistor to 1 every loop
+    // setResistorAndDelay(1);  // Removed: was resetting to 1 every loop
     delay(500);
     interrupts();
 }
@@ -244,9 +236,10 @@ void initDisplay() {
 void displayValue(char* value, int col, int row) {
     // initDisplay();
     // Clear the area before displaying new value
-    display.fillRect(col, row, 54, 16, SSD1306_BLACK);
+    display.fillRect(col, row, 58, 17, SSD1306_BLACK);
     display.setTextSize(2);
     display.setTextColor(SSD1306_WHITE);
+    display.setTextWrap(false);  // Disable text wrapping
     display.setCursor(col, row);
     display.print(value);
     display.display();
@@ -254,17 +247,17 @@ void displayValue(char* value, int col, int row) {
 
 void displayTRES(char* tres) {
     // initDisplay();
-    displayValue(tres, 70, 33);
+    displayValue(tres, 68, 33);
 }
 
 void displayTAMB(char* tamb) {
     // initDisplay();
-    displayValue(tamb, 70, 48);
+    displayValue(tamb, 68, 48);
 }
 
 void displayResistor(char* resistor) {
     // initDisplay();
-    displayValue(resistor, 70, 18);
+    displayValue(resistor, 68, 18);
 }
 
 void getTempAndDisplay() {
@@ -307,37 +300,41 @@ void initIOExpander() {
 uint8_t selectResistor(uint8_t parResistor) {
     uint8_t currentResistor = parResistor;
     int delta = currentResistor - previousResistor;
-    
+
     if (parResistor > 16) parResistor = 16;
     else if (parResistor < 0) parResistor = 0;
-    
-    if ( parResistor == 0 )
-    {
+
+    if ( parResistor == 0 ) {
       // Set all pins LOW (all relays off)
       for (uint8_t i = 0; i < 16; i++) {
         TCA.write1(i, LOW);
       }
-    }
-    else{
-      if(delta > 0) {
+    } else {
+      if (delta > 0) {
         TCA.write1(currentResistor-1, HIGH);
       } else if (delta < 0) {
         TCA.write1(previousResistor-1, LOW);
       }
     }
-    
+
     previousResistor = currentResistor;
     return parResistor;
 }
 
 void setResistorAndDelay(uint8_t parResistor) {
   char parResistorStr[6];
-  if(parResistor > 16) parResistor = 16;
-  else if (parResistor < 1) parResistor = 0;
-  if(parResistor == 0) snprintf((char*)parResistorStr, sizeof(parResistorStr),
-            "%s", "INF" );
-  else snprintf((char*)parResistorStr, sizeof(parResistorStr),
+  if (parResistor > 16) {
+    parResistor = 16;
+  } else if (parResistor < 1) {
+    parResistor = 0;
+  }
+  if (parResistor == 0) {
+    snprintf((char*)parResistorStr, sizeof(parResistorStr),
+            "%s", "INF");
+  } else {
+    snprintf((char*)parResistorStr, sizeof(parResistorStr),
             "%.2f", 100.0 / parResistor);
+  }
   selectResistor(parResistor);
   displayResistor(parResistorStr);
   delay(10);
