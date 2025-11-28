@@ -1,5 +1,5 @@
 
-BOARD?=esp32:esp32:esp32c3
+BOARD?=esp32:esp32:esp32c3:CDCOnBoot=cdc
 
 PORT?=COM11
 

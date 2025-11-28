@@ -16,19 +16,19 @@ November 2025
 #define I2C_SDA_PIN         4
 #define I2C_SCL_PIN         5
 
-#define SCREEN_WIDTH    128
-#define SCREEN_HEIGHT   64
-#define OLED_RESET      -1
+#define SCREEN_WIDTH        128
+#define SCREEN_HEIGHT       64
+#define OLED_RESET          -1
 
 /*BUTTONS*/
-#define USER_BTN1_PIN 6
-#define USER_BTN2_PIN 7
-#define USER_BTN3_PIN 8
+#define USER_BTN1_PIN   6
+#define USER_BTN2_PIN   7
+#define USER_BTN3_PIN   8
 
-#define TEMP_AMB_PIN 2
-#define TEMP_RES_PIN 3
+#define TEMP_AMB_PIN    2
+#define TEMP_RES_PIN    3
 
-#define DEBOUNCE_MS 50
+#define DEBOUNCE_MS     200
 
 // allowing a 16-bit write in one transmission.
 const byte REG_OUTPUT_PORT_0 = 0x02;
@@ -44,38 +44,48 @@ volatile uint64_t btn1PressTimer = 0;
 volatile uint64_t btn2PressTimer = 0;
 volatile uint64_t btn3PressTimer = 0;
 
-volatile uint8_t selectedResistor = 1;
+volatile uint8_t selectedResistor = 0;
+volatile uint8_t previousResistor = 0;
 
 enum changeState {
     NO_CHANGE,
     INCREASE,
-    DECREASE
+    DECREASE,
+    ACCEPT_CHANGE
 } ResistorState = NO_CHANGE;
 
 
 TCA9535 TCA(I2C_IOEXP_ADDRESS);
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 volatile uint64_t lastBtn1Interrupt = 0;
 volatile uint64_t lastBtn2Interrupt = 0;
 volatile uint64_t lastBtn3Interrupt = 0;
 
 void IRAM_ATTR handleBtnPress() {
- if ( digitalRead(USER_BTN1_PIN) == LOW ) {
-    uint64_t currentInterruptTime = millis();
-    btn1Pressed = 1;
- }
- else if ( digitalRead(USER_BTN2_PIN) == LOW )
- {
-    uint64_t currentInterruptTime = millis();
-    btn2Pressed = 1;
- }
- else if ( digitalRead(USER_BTN3_PIN) == LOW )
- {
-    uint64_t currentInterruptTime = millis();
-    btn3Pressed = 1;
-    
- }
+  noInterrupts();  // Disable interrupts during processing
+  uint64_t currentTime = millis();
+  
+  if ( digitalRead(USER_BTN1_PIN) == LOW ) {
+      if (currentTime - lastBtn1Interrupt > DEBOUNCE_MS) {
+        btn1Pressed = 1;
+        lastBtn1Interrupt = currentTime;
+      }
+  }
+  else if ( digitalRead(USER_BTN2_PIN) == LOW )
+  {
+      if (currentTime - lastBtn2Interrupt > DEBOUNCE_MS) {
+        btn2Pressed = 1;
+        lastBtn2Interrupt = currentTime;
+      }
+  }
+  else if ( digitalRead(USER_BTN3_PIN) == LOW )
+  {
+      if (currentTime - lastBtn3Interrupt > DEBOUNCE_MS) {
+        btn3Pressed = 1;
+        lastBtn3Interrupt = currentTime;
+      }
+  }
  
 }
 void initDisplay();
@@ -119,9 +129,9 @@ void setup() {
     delay(100);
     Serial.println("Starting setup...");
     // Configure button pins with internal pull-up resistors
-    pinMode(USER_BTN1_PIN, INPUT_PULLUP);
-    pinMode(USER_BTN2_PIN, INPUT_PULLUP);
-    pinMode(USER_BTN3_PIN, INPUT_PULLUP);
+    pinMode(USER_BTN1_PIN, INPUT);
+    pinMode(USER_BTN2_PIN, INPUT);
+    pinMode(USER_BTN3_PIN, INPUT);
     pinMode(TEMP_AMB_PIN, INPUT);
     pinMode(TEMP_RES_PIN, INPUT);
     Wire.begin(I2C_SDA_PIN, I2C_SCL_PIN);
@@ -135,6 +145,8 @@ void setup() {
     initIOExpander();
     // Initialize display (display.begin is called inside initDisplay)
     initDisplay();
+    // Display initial state (all relays off)
+    setResistorAndDelay(selectedResistor);
     
     attachInterrupt(digitalPinToInterrupt(USER_BTN1_PIN), handleBtnPress, FALLING);
     attachInterrupt(digitalPinToInterrupt(USER_BTN2_PIN), handleBtnPress, FALLING);
@@ -145,61 +157,59 @@ void loop() {
     static int lastBtn1State = -1;
     static int lastBtn2State = -1;
     static int lastBtn3State = -1;
-    // Handle Button 1 Press
-    if (btn1Pressed) {
+    
+    // Handle Button 1 Press (only if state is NO_CHANGE)
+    if (btn1Pressed && ResistorState == NO_CHANGE) {
+      btn1Pressed = 0;  // Clear flag immediately
       ResistorState = DECREASE;
       Serial.println("Button 1 Pressed");
       LEDBlink();
-      btn1Pressed = 0;
     }
-    if(btn2Pressed) {
+    // Handle Button 2 Press (only if state is NO_CHANGE)
+    if(btn2Pressed && ResistorState == NO_CHANGE) {
+        btn2Pressed = 0;  // Clear flag immediately
         ResistorState = INCREASE;
         Serial.println("Button 2 Pressed");
         LEDBlink();
-        btn2Pressed = 0;
     }
+    // Handle Button 3 Press
     if(btn3Pressed) {
-        ResistorState = NO_CHANGE;
+        // noInterrupts();  // Disable interrupts during processing
+        btn3Pressed = 0;  // Clear flag immediately
+        ResistorState = ACCEPT_CHANGE;
         Serial.println("Button 3 Pressed");
         LEDBlink();
-        btn3Pressed = 0;
     }
     switch (ResistorState)
     {
       case INCREASE:
         Serial.println("INCREASE");
-        Serial.print("seletedResistor = ");
-        Serial.println(selectedResistor);
         if (selectedResistor < 16) selectedResistor++;
         else selectedResistor = 16;
-        Serial.print("seletedResistor = ");
-        Serial.println(selectedResistor);
-        setResistorAndDelay(selectedResistor);
         ResistorState = NO_CHANGE;
         break;
       case DECREASE:
         Serial.println("DECREASE");
-        Serial.print("seletedResistor = ");
-        Serial.println(selectedResistor);
-        if (selectedResistor < 2) selectedResistor=1;
+        if (selectedResistor < 1) selectedResistor=0;
         else selectedResistor--;
+        ResistorState = NO_CHANGE;
+        break;
+      case ACCEPT_CHANGE:
+        Serial.println("ACCEPT_CHANGE");
+        // Currently no specific action defined for ACCEPT_CHANGE
         Serial.print("seletedResistor = ");
         Serial.println(selectedResistor);
         setResistorAndDelay(selectedResistor);
         ResistorState = NO_CHANGE;
-        break;
+        break;        
       case NO_CHANGE:
-        // Serial.println("NO_CHANGE");
-        // Serial.print("seletedResistor = ");
-        // Serial.println(selectedResistor);
-        // Do nothing
-        // setResistorAndDelay(selectedResistor);
         break;
     }
 
     getTempAndDisplay();
     // setResistorAndDelay(1);  // Removed: was resetting selectedResistor to 1 every loop
     delay(500);
+    interrupts();
 }
 
 void initDisplay() {
@@ -296,29 +306,38 @@ void initIOExpander() {
 
 uint8_t selectResistor(uint8_t parResistor) {
     uint8_t currentResistor = parResistor;
+    int delta = currentResistor - previousResistor;
     
     if (parResistor > 16) parResistor = 16;
-    else if (parResistor < 1) parResistor = 1;
-
-    // First, set all pins to LOW
-    for (uint8_t i = 0; i < 16; i++) {
-      TCA.write1(i, LOW);
+    else if (parResistor < 0) parResistor = 0;
+    
+    if ( parResistor == 0 )
+    {
+      // Set all pins LOW (all relays off)
+      for (uint8_t i = 0; i < 16; i++) {
+        TCA.write1(i, LOW);
+      }
+    }
+    else{
+      if(delta > 0) {
+        TCA.write1(currentResistor-1, HIGH);
+      } else if (delta < 0) {
+        TCA.write1(previousResistor-1, LOW);
+      }
     }
     
-    // Then set the required pins to HIGH
-    for (uint8_t i = 0; i < parResistor; i++) {
-      TCA.write1(i, HIGH);
-    }
-    
-    selectedResistor = currentResistor;
+    previousResistor = currentResistor;
     return parResistor;
 }
 
 void setResistorAndDelay(uint8_t parResistor) {
   char parResistorStr[6];
-  float resistorValue = 100.0 / parResistor;
-    snprintf((char*)parResistorStr, sizeof(parResistorStr),
-            "%.1f", resistorValue);
+  if(parResistor > 16) parResistor = 16;
+  else if (parResistor < 1) parResistor = 0;
+  if(parResistor == 0) snprintf((char*)parResistorStr, sizeof(parResistorStr),
+            "%s", "INF" );
+  else snprintf((char*)parResistorStr, sizeof(parResistorStr),
+            "%.2f", 100.0 / parResistor);
   selectResistor(parResistor);
   displayResistor(parResistorStr);
   delay(10);
