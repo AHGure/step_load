@@ -10,6 +10,11 @@ November 2025
 #include <Adafruit_SSD1306.h>
 #include <cstdio>
 
+// UART COMMUNICATION
+#define SYNC_BYTE       0x51
+#define READ_CMD        0x01
+#define WRTITE_CMD      0x02
+
 #define LED_PIN             10
 #define I2C_IOEXP_ADDRESS   0x20
 #define I2C_OLED_ADDRESS    0x3C
@@ -54,12 +59,30 @@ enum changeState {
     ACCEPT_CHANGE
 } ResistorState = NO_CHANGE;
 
+enum CommandState {
+    IDLE,
+    PARALLEL_RESISTOR,
+    CONFIRM_RESISTOR,
+} CmdState = IDLE;
+
+struct uart {
+    uint8_t sync;
+    uint8_t command;
+    uint8_t data[4];
+};
+uart uartPacket;
+
+
 TCA9535 TCA(I2C_IOEXP_ADDRESS);
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 volatile uint64_t lastBtn1Interrupt = 0;
 volatile uint64_t lastBtn2Interrupt = 0;
 volatile uint64_t lastBtn3Interrupt = 0;
+
+volatile uint8_t RXData[10];
+volatile bool dataReceived = false;
+volatile uint8_t rxIndex = 0;
 
 void IRAM_ATTR handleBtnPress() {
   noInterrupts();  // Disable interrupts during processing
@@ -82,6 +105,65 @@ void IRAM_ATTR handleBtnPress() {
       }
   }
 }
+
+void readSerial() {
+    static uint8_t buffer[10];
+    static uint8_t index = 0;
+    static unsigned long lastByteTime = 0;
+    static unsigned long debugTimer = 0;
+    unsigned long currentTime = millis();
+
+    // Debug: Print every 5 seconds if waiting for data
+    if (currentTime - debugTimer > 5000) {
+        Serial.print("Waiting for serial data. Available: ");
+        Serial.println(Serial.available());
+        debugTimer = currentTime;
+    }
+
+    // Reset buffer if timeout (500ms since last byte)
+    if (index > 0 && (currentTime - lastByteTime) > 500) {
+        Serial.println("Buffer timeout - resetting");
+        index = 0;
+    }
+
+    while (Serial.available() > 0) {
+        uint8_t inByte = Serial.read();
+        lastByteTime = currentTime;
+
+        Serial.print("Received byte[");
+        Serial.print(index);
+        Serial.print("]: 0x");
+        if (inByte < 16) Serial.print("0");
+        Serial.println(inByte, HEX);
+
+        // If we see sync byte, start fresh
+        if (inByte == SYNC_BYTE && index != 0) {
+            Serial.println("SYNC byte detected - restarting buffer");
+            index = 0;
+        }
+
+        buffer[index++] = inByte;
+
+        // If buffer is full, process it
+        if (index >= 10) {
+            Serial.println("Buffer full - processing");
+            if (buffer[0] == SYNC_BYTE) {
+                Serial.println("Valid sync byte - copying to RXData");
+                noInterrupts();
+                for (uint8_t i = 0; i < 10; i++) {
+                    RXData[i] = buffer[i];
+                }
+                dataReceived = true;
+                interrupts();
+            } else {
+                Serial.print("Invalid sync byte: 0x");
+                Serial.println(buffer[0], HEX);
+            }
+            index = 0;
+        }
+    }
+}
+
 void initDisplay();
 void displayValue(char* value, int col, int row);
 void displayTRES(char* tres);
@@ -155,6 +237,28 @@ void loop() {
     static int lastBtn2State = -1;
     static int lastBtn3State = -1;
 
+    // Check for serial data
+    readSerial();
+
+    if (dataReceived) {
+      noInterrupts();
+      uint8_t localData[10];
+      for (uint8_t i = 0; i < 10; i++) {
+          localData[i] = RXData[i];
+      }
+      dataReceived = false;
+      interrupts();
+
+      Serial.println("=== Serial Data Received ===");
+      for (uint8_t i = 0; i < 10; i++) {
+          Serial.print("RXData[");
+          Serial.print(i);
+          Serial.print("]: 0x");
+          if (localData[i] < 16) Serial.print("0");
+          Serial.println(localData[i], HEX);
+      }
+      Serial.println("===========================");
+    }
     // Handle Button 1 Press (only if state is NO_CHANGE)
     if (btn1Pressed && ResistorState == NO_CHANGE) {
       btn1Pressed = 0;  // Clear flag immediately
