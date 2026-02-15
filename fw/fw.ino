@@ -349,7 +349,8 @@ void displayValue(char* value, int col, int row) {
     display.display();
 }
 
-void displayTRES(char* tres) {
+void displayTRES(char* tres)
+{
     // initDisplay();
     displayValue(tres, 68, 33);
 }
